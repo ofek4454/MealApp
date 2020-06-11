@@ -15,17 +15,15 @@ class CategorysScreen extends StatelessWidget {
             ),
             onPressed: () {}),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-          ),
-          children: CATEGORIES.map((category) => CategoryItem(category)).toList(),
+      body: GridView(
+        padding: EdgeInsets.all(5),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
+        children: CATEGORIES.map((category) => CategoryItem(category)).toList(),
       ),
     );
   }
