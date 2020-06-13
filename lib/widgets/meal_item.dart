@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
+import 'package:MealsApp/screens/meal_details_screen.dart';
 
 class MealItem extends StatelessWidget {
   final Meal _meal;
@@ -8,12 +9,16 @@ class MealItem extends StatelessWidget {
 
   MealItem(this._meal, this.cardHeight);
 
-  void mealDetailsPage() {}
+  void mealDetailsPage(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(MealDetailsScreen.rountName , arguments: _meal);
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: mealDetailsPage,
+      onTap: () => mealDetailsPage(context),
+      borderRadius: BorderRadius.circular(20),
+      focusColor: Theme.of(context).primaryColor,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -34,14 +39,17 @@ class MealItem extends StatelessWidget {
                       _meal.imageUrl,
                       height: cardHeight * 0.8,
                       width: double.infinity,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Container(
                     color: Colors.black26,
                     child: Text(
                       _meal.title,
-                      style: Theme.of(context).textTheme.title.copyWith(color: Colors.white),
+                      style: Theme.of(context)
+                          .textTheme
+                          .title
+                          .copyWith(color: Colors.white),
                     ),
                   ),
                 ],
@@ -49,34 +57,42 @@ class MealItem extends StatelessWidget {
             ),
             Flexible(
               flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox(height: cardHeight*0.2,),
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.access_time),
-                      SizedBox(width: 10,),
-                      Text('${_meal.duration} min'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.fitness_center),
-                      SizedBox(width: 10,),
-                      Text(_meal.complexity.toString().split('.')[1]),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.local_atm),
-                      SizedBox(width: 10,),
-                      Text(_meal.affordability.toString().split('.')[1]),
-                    ],
-                  ),
-                ],
+              child: SizedBox(
+                height: cardHeight * 0.2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.access_time),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('${_meal.duration} min'),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.fitness_center),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(_meal.complexity.toString().split('.')[1]),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.local_atm),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(_meal.affordability.toString().split('.')[1]),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

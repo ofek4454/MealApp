@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './screens/categorys_screen.dart';
 import './screens/category_meals_screen.dart';
+import 'package:MealsApp/screens/meal_details_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Meals App',
       theme: ThemeData(
         primarySwatch: Colors.cyan,
@@ -31,7 +33,8 @@ class MyApp extends StatelessWidget {
       ),
       home: CategorysScreen(),
       routes: {
-        CategoryMealsScreen.routName : (ctx) => CategoryMealsScreen()
+        CategoryMealsScreen.routName : (ctx) => CategoryMealsScreen(),
+        MealDetailsScreen.rountName : (ctx) => MealDetailsScreen()
       },
     );
   }
