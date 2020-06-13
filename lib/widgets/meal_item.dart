@@ -1,3 +1,4 @@
+import 'package:MealsApp/widgets/meal_info_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
@@ -59,38 +60,7 @@ class MealItem extends StatelessWidget {
               flex: 2,
               child: SizedBox(
                 height: cardHeight * 0.2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.access_time),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('${_meal.duration} min'),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.fitness_center),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(_meal.complexity.toString().split('.')[1]),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.local_atm),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(_meal.affordability.toString().split('.')[1]),
-                      ],
-                    ),
-                  ],
-                ),
+                child: MealInfoBar(_meal),
               ),
             ),
           ],
