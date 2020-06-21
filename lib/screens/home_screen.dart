@@ -1,4 +1,3 @@
-import 'package:MealsApp/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import './categorys_screen.dart';
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(_pages[_selectedPage]['title']),
         centerTitle: true,
       ),
-      drawer: _selectedPage ==0 ? MainDrawer('/') : MainDrawer(SettingsScreen.routName),
+      drawer: MainDrawer('/'),
       body: _pages[_selectedPage]['page'],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
