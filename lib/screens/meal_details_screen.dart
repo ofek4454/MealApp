@@ -8,6 +8,11 @@ import '../models/category.dart';
 class MealDetailsScreen extends StatelessWidget {
   static const rountName = '/meal-details';
 
+  final Function setAsFavorite;
+  final Function isMealFavorite;
+
+  MealDetailsScreen(this.setAsFavorite, this.isMealFavorite);
+
   Widget buildTitleText(BuildContext ctx, String text) {
     return Padding(
       padding: const EdgeInsets.all(5),
@@ -67,6 +72,22 @@ class MealDetailsScreen extends StatelessWidget {
                       height: constranits.maxHeight * 0.35,
                       width: double.infinity,
                       fit: BoxFit.cover,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          height: constranits.maxHeight * 0.35,
+                          width: double.infinity,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes
+                                  : null,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     Container(
                       color: Colors.black26,
@@ -134,6 +155,11 @@ class MealDetailsScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+            isMealFavorite(_meal) ? Icons.favorite : Icons.favorite_border),
+        onPressed: () => setAsFavorite(_meal),
       ),
     );
   }
